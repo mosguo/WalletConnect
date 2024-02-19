@@ -1,6 +1,9 @@
 
 
 window.addEventListener('load', async () => {
+	
+	
+
   // 檢查是否存在 MetaMask
   if (typeof window.ethereum !== 'undefined') {
     // 初始化 Web3.js
@@ -17,7 +20,10 @@ window.addEventListener('load', async () => {
       console.log('privateKey:', accounts.privateKey);
 
       // 獲取用戶地址
-      const userAddress = window.ethereum.selectedAddress ;//accounts[0];
+      const userAddress = accounts[0];
+      //window.ethereum.selectedAddress ;////const userAddress = window.ethereum.request({method: 'eth_accounts'})
+      
+      
       console.log('User Address:', userAddress);
       var addressElement = document.getElementById("address");
       addressElement.textContent = userAddress;
@@ -27,7 +33,8 @@ window.addEventListener('load', async () => {
       console.log('Balance:', web3.utils.fromWei(balance, 'ether'), 'ETH');
       var balanceElement = document.getElementById("balance");
       balanceElement.textContent = web3.utils.fromWei(balance, 'ether');
-       
+
+     
     } catch (err) {
       console.error('Error connecting to MetaMask:', err.message); 
     }
