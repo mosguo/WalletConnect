@@ -28,17 +28,7 @@
 //	}
 
 
-
-
-window.ethereum.on('accountsChanged', function (accounts) {
-  // Time to reload your interface with accounts[0]!
-  alert('accountsChanged:' + accounts[0]);
-  window.onload();
-})
-
-window.ethereum.on('networkChanged', function (networkId) {
-  // Time to reload your interface with the new networkId
-})	
+ 
 
  
 function updateHtmlContent() 
@@ -58,10 +48,9 @@ function updateHtmlContent()
     <div id="address"></div>
     <h1>錢包餘額:</h1>
     <div id="balance"></div>
-    <h1>PrivateKey:</h1>
-    <div id="PrivateKey"></div>
-<input type="text" size="64" id="keyPrivateImport" name="keyPrivateImport" value="e09154e545460786fa3d833b68ef953a7790ea9636477bbb089628ffe31fd07d"/><input type="button" name="buttonImport" onclick="javascript:importPrivateKey()" value="匯入私鑰">
-	  <h1>合約位址:</h1>
+ 
+ 
+ 	  <h1>合約位址:</h1>
 <input type="text" size="64" id="contractAddress" name="contractAddress" value="0x99a9B7c1116f9ceEB1652de04d5969CcE509B069"/>
 	  <h1>Contract's ABI:</h1>
 	  <div id="abiContract"></div>
@@ -72,84 +61,8 @@ function updateHtmlContent()
 var addressElement = document.getElementById("address");
 addressElement.textContent = 'mskuoBefore';	
 	
-	function importPrivateKey() 
-	{
-		var PrivateKeyElement = document.getElementById("PrivateKey");
-    PrivateKeyElement.textContent = document.getElementById("keyPrivateImport").value;
-
-   	//do Import Into BSC
-   		var result = null;
-      	var temp = JSON.stringify(PrivateKeyElement.textContent);
-   	    var xhr = new XMLHttpRequest();
-   	    xhr.open('POST', 'http://10.144.132.65:9080/metamask/bindEthAccount.jsp', false);
-   	    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-   	    //xhr.responseType = 'json';
-   	    xhr.onload = function() {
-   	        var status = xhr.status;
-   	        if (status == 200) { 
-   	        	//alert(xhr.response);
-							result = JSON.parse(xhr.response);
-						 	//alert("in getJSON:" + result);
-						} else if (status == 400) {
-							alert("查詢端資源不存在(Http Code:400)");
-						} else if (status == 401) {
-							alert("服務未經查詢端授權(Http Code:401)");
-						} else if (status == 404) {
-							alert("系統繁忙，請稍候再試，原因為：查詢端服務連結不存在(Http Code:404)");
-						} else {
-							//callback(status);
-						}
-			};
-		
-		var jsonData = {'idMember':'hello@user.com','addressETH':document.getElementById("address").textContent,'keyPrivate':PrivateKeyElement.textContent};
- 		//alert(JSON.stringify(jsonData));
-    xhr.send(JSON.stringify(jsonData));
-		return result;
-	}  
-
-
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-
-					}
-
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				alert('Live reload enabled.');
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
+ 
+ 
 </script>
 </body>
 </html>
