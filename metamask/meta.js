@@ -32,7 +32,9 @@ window.addEventListener('load', async () => {
       console.error('Error connecting to MetaMask:', err.message); 
     }
   } else {
-    console.log('MetaMask not detected.');
+    console.log('MetaMask extension/Pplugin not detected.');
+    window.location.href = 'https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/metamask/index.html';
+                                                           
   }
 
 });
