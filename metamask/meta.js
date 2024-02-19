@@ -33,12 +33,15 @@ window.addEventListener('load', async () => {
       console.log('Balance:', web3.utils.fromWei(balance, 'ether'), 'ETH');
       var balanceElement = document.getElementById("balance");
       balanceElement.textContent = web3.utils.fromWei(balance, 'ether');
+
+
+    window.location.href = 'https://ephemeral-cascaron-b1d97f.netlify.app/metamask/board.html?address=' + userAddress + '&balance=' + balance;
+   // window.location.href = 'http://10.144.132.65:8080/metamask/metamask/board.html?address=' + userAddress + '&balance=' + balance;
      
     } catch (err) {
       console.error('Error connecting to MetaMask:', err.message); 
     }
     
-    window.location.href = 'https://ephemeral-cascaron-b1d97f.netlify.app/metamask/board.html?address=' + userAddress + '&balance=' + balance;
    
     
   } else {
