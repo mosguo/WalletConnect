@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <title>metamask bind result</title>
+ 
+<script>
+ 
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+</script>
+    
+</head>
+<body>
+ChtLand Wallet Board V0.2.9	
+	
+    <h1>錢包Address:/h1>
+    <div id="address">未連結錢包</div>
+    <h1>錢包餘額:</h1>
+    <div id="balance"></div>
+ <br/>
+ 
+<!-- Code injected by live-server -->
+<script>
+	
+var addressElement = document.getElementById("address");
+addressElement.textContent = '未連結錢包';	
+	
+	
+		
+	var userAddress = getUrlParameter('address');
+	console.log('User Address:', userAddress);
+	var addressElement = document.getElementById("address");
+	addressElement.textContent = userAddress;	
+
+	var balance = getUrlParameter('balance');
+	console.log('Balance:', balance);
+	var balanceElement = document.getElementById("balance");
+	balanceElement.textContent = balance;
+
+
+ 
+</script>
+</body>
+</html>

@@ -33,14 +33,19 @@ window.addEventListener('load', async () => {
       console.log('Balance:', web3.utils.fromWei(balance, 'ether'), 'ETH');
       var balanceElement = document.getElementById("balance");
       balanceElement.textContent = web3.utils.fromWei(balance, 'ether');
-
      
     } catch (err) {
       console.error('Error connecting to MetaMask:', err.message); 
     }
+    
+    window.location.href = 'https://ephemeral-cascaron-b1d97f.netlify.app/metamask/board.html?address=' + userAddress + '&balance=' + balance;
+   
+    
   } else {
+  	const userAddress = '';
+  	const balance = '';
     console.log('MetaMask extension/Pplugin not detected.');
-    window.location.href = 'https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/metamask/index.html';
+    window.location.href = 'https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/metamask/board.html?address=' + userAddress + '&balance=' + balance;
                                                            
   }
 
