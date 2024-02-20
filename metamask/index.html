@@ -136,8 +136,8 @@ updateConsole('initial');
 
 updateConsole('finished');	
 
- 
-
+var elemConsole = document.getElementById("console");
+  elemConsole.textContent = elemConsole.textContent.replace(/\r\n?/g, '<br />')
 
 
 

@@ -93,7 +93,6 @@ updateConsole('The Browser is MetamaskWebView.');
 updateConsole('The Browser is Others.');
 			//window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		}
-			
  
 
 });
