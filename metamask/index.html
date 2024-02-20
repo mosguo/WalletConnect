@@ -94,7 +94,7 @@ function getBrowserVersion() {
 function updateConsole(dat) 
 {
 	var elemConsole = document.getElementById("console");
-  elemConsole.textContent += dat;	
+  elemConsole.textContent += dat + String.fromCharCode(13);	
 }
 
 </script>

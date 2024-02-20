@@ -72,25 +72,26 @@ updateConsole('MetaMask extension/Pplugin not detected.');
 			browser = 'Chrome'; 
  			console.log('The Browser is Chrome.');
 updateConsole('The Browser is Chrome.');
-			window.location.href = protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			//window.location.href = protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			//window.location.href = 'http://10.144.132.65:8080' + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else if (isEdge()){
 			browser = 'Edge'; 
  			console.log('The Browser is Edge.');
 updateConsole('The Browser is Edge.');
-			window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			//window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else if (isMetamaskWebView()){
 			browser = 'MetamaskWebView'; 
  			console.log('The Browser is MetamaskWebView.');
 updateConsole('The Browser is MetamaskWebView.');
 			//window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
-			window.location.href = protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			//window.location.href = protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
 
 
  		} else {
 			browser = 'Others'; 
  			console.log('The Browser is Others.');
 updateConsole('The Browser is Others.');
-			window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			//window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		}
 			
  
