@@ -53,8 +53,9 @@ window.addEventListener('load', async () => {
 
 		//判斷進行不userAgent同方式的導向
 		console.log('userAgent:', navigator.userAgent);
-		var hostServer = 'https://ephemeral-cascaron-b1d97f.netlify.app';
-		hostServer = 'http://10.144.132.65:8080';
+		var protocolServer = 'https://';
+		var hostServer = 'ephemeral-cascaron-b1d97f.netlify.app';
+		//hostServer = 'http://10.144.132.65:8080';
 		
 		//Chrome
 		//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
@@ -62,15 +63,15 @@ window.addEventListener('load', async () => {
  		if (isChrome()) {
  			console.log('The Browser is Chrome.');
 			browser = 'Chrome'; 
-			window.location.href = hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			window.location.href = protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else if (isEdge()){
 			browser = 'Edge'; 
  			console.log('The Browser is Edge.');
-			window.location.href =  hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else {
 			browser = 'Others'; 
  			console.log('The Browser is Others.');
-			window.location.href = 'https://metamask.app.link/dapp/10.144.132.65:8080/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		}
 			
  

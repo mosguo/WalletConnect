@@ -97,10 +97,13 @@ function getBrowserVersion() {
     
 </head>
 <body>
-ChtLand WalletConnect V0.3.0	
+ChtLand WalletConnect V0.20.0946	
 	
-	  <h1>Browser:</h1>
-    <div id="browser"></div>
+    <h1>終端用戶:</h1>
+
+	  <b>Browser:</b><div id="browser"></div><br/>
+    <b>User-Agent:</b><div id="agent"></div><br/>
+    <b>idMember:</b><div id="idMember"></div><br/>
 	
     <h1>錢包Address:</h1>
     <div id="address"></div>
@@ -108,14 +111,19 @@ ChtLand WalletConnect V0.3.0
     <div id="balance"></div>
  <br/>
 
- 
-	
-    <script type="module" src="meta.js?v=0.0.32"></script>
 <!-- Code injected by live-server -->
 <script>
-var addressElement = document.getElementById("address");
-addressElement.textContent = '未連結錢包';	
- 
-</script>
+	var addressElement = document.getElementById("address");
+	addressElement.textContent = '未連結錢包';	
+	
+	//navigator.userAgent
+	console.log('Browser:', navigator.userAgent);
+	var elemAgent = document.getElementById("agent");
+	elemAgent.textContent = navigator.userAgent;	 
+</script> 
+	
+
+<script type="module" src="meta.js?v=0.0.32"></script>
+
 </body>
 </html>
