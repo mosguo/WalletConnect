@@ -9,6 +9,7 @@ function isMetamaskWebView() {
 } 
 window.addEventListener('load', async () => {
 	  // 檢查是否存在 MetaMask
+updateConsole('檢查是否存在 MetaMask');	
 	  if (typeof window.ethereum !== 'undefined') {
 			var idMember = 'fromIndex';  
 			var browser = ''; 
@@ -42,6 +43,7 @@ window.addEventListener('load', async () => {
 	      var balanceElement = document.getElementById("balance");
 	      balanceElement.textContent = web3.utils.fromWei(balance, 'ether');
 	    //window.location.href = 'http://10.144.132.65:8080/metamask/board.html?address=' + userAddress + '&balance=' + balance;
+updateConsole('獲取 MetaMask 餘額:'+balance);
 	     
 	    } catch (err) {
 	      console.error('Error connecting to MetaMask:', err.message); 
@@ -50,6 +52,7 @@ window.addEventListener('load', async () => {
 	  	const userAddress = '';
 	  	const balance = '';
 	    console.log('MetaMask extension/Pplugin not detected.');
+updateConsole('MetaMask extension/Pplugin not detected.');
 	    //window.location.href = 'https://metamask.app.link/dapp/10.144.132.65:8080/metamask/board.html?address=' + userAddress + '&balance=' + balance;
 	  }
 
@@ -63,16 +66,19 @@ window.addEventListener('load', async () => {
 		//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
 		
  		if (isChrome()) {
- 			console.log('The Browser is Chrome.');
 			browser = 'Chrome'; 
+ 			console.log('The Browser is Chrome.');
+updateConsole('The Browser is Chrome.');
 			window.location.href = protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else if (isEdge()){
 			browser = 'Edge'; 
  			console.log('The Browser is Edge.');
+updateConsole('The Browser is Edge.');
 			window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else if (isMetamaskWebView()){
 			browser = 'MetamaskWebView'; 
  			console.log('The Browser is MetamaskWebView.');
+updateConsole('The Browser is MetamaskWebView.');
 			//window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
 			window.location.href = protocolServer' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
 
@@ -80,6 +86,7 @@ window.addEventListener('load', async () => {
  		} else {
 			browser = 'Others'; 
  			console.log('The Browser is Others.');
+updateConsole('The Browser is Others.');
 			window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		}
 			

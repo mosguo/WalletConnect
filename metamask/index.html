@@ -91,7 +91,11 @@ function getBrowserVersion() {
 		}
 }
 
-
+function updateConsole(dat) 
+{
+	var elemConsole = document.getElementById("console");
+  elemConsole.textContent += dat;	
+}
 
 </script>
     
@@ -109,7 +113,8 @@ ChtLand WalletConnect V0.20.0946
     <div id="address"></div>
     <h1>錢包餘額:</h1>
     <div id="balance"></div>
- <br/>
+ <hr/>
+    <b>console:</b><div id="console"></div><br/>
 
 <!-- Code injected by live-server -->
 <script>
@@ -120,6 +125,8 @@ ChtLand WalletConnect V0.20.0946
 	console.log('Browser:', navigator.userAgent);
 	var elemAgent = document.getElementById("agent");
 	elemAgent.textContent = navigator.userAgent;	 
+	
+updateConsole('initial');	
 </script> 
 	
 
