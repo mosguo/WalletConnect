@@ -17,8 +17,14 @@ function getUrlParameter(name) {
     
 </head>
 <body>
-ChtLand Wallet Board V0.2.9	
-	
+ChtLand Wallet Board V0.3.0
+
+    <h1>終端用戶:</h1>
+
+	  <b>Browser:</b><div id="browser"></div><br/>
+    <b>User-Agent:</b><div id="agent"></div><br/>
+    <b>idMember:</b><div id="idMember"></div><br/>
+
     <h1>錢包Address:</h1>
     <div id="address">未連結錢包</div>
     <h1>錢包餘額:</h1>
@@ -30,21 +36,34 @@ ChtLand Wallet Board V0.2.9
 	
 var addressElement = document.getElementById("address");
 addressElement.textContent = '未連結錢包';	
+	//----------------------------------------------------
+	var browser = getUrlParameter('browser');
+	console.log('Browser:', browser);
+	var elemBrowser = document.getElementById("browser");
+	elemBrowser.textContent = browser;	
 	
-	
+	//navigator.userAgent
+	console.log('Browser:', navigator.userAgent);
+	var elemAgent = document.getElementById("agent");
+	elemAgent.textContent = navigator.userAgent;	
 		
+	var idMember = getUrlParameter('idMember');
+	console.log('idMember:', idMember);
+	var elemMember = document.getElementById("idMember");
+	elemMember.textContent = idMember;	
+			
 	var userAddress = getUrlParameter('address');
 	console.log('User Address:', userAddress);
-	var addressElement = document.getElementById("address");
-	addressElement.textContent = userAddress;	
+	var elemAddress = document.getElementById("address");
+	elemAddress.textContent = userAddress;	
 
 	var balance = getUrlParameter('balance');
 	console.log('Balance:', balance);
-	var balanceElement = document.getElementById("balance");
-	balanceElement.textContent = balance;
+	var elemBalance = document.getElementById("balance");
+	elemBalance.textContent = balance;
 
-  window.location.href = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + userAddress + '&balance=' + balance;
- 
+
+ //window.location.href = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + userAddress + '&balance=' + balance;
 </script>
 </body>
 </html>

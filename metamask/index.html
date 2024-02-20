@@ -10,35 +10,111 @@
     
     <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 <script>
- 
- 
 function updateHtmlContent() 
 {
-
-		var addressElement = document.getElementById("address");
-    addressElement.textContent = 'mskuoAfter';	
+	var addressElement = document.getElementById("address");
+  addressElement.textContent = 'mskuoAfter';	
 }
+
+function prototype_deletctUserAgent(){
+		// Opera 8.0+
+		var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+		
+		// Firefox 1.0+
+		var isFirefox = typeof InstallTrigger !== 'undefined';
+		
+		// Safari 3.0+ "[object HTMLElementConstructor]" 
+		var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
+		
+		// Internet Explorer 6-11
+		var isIE = /*@cc_on!@*/false || !!document.documentMode;
+		
+		// Edge 20+
+		var isEdge = !isIE && !!window.StyleMedia;
+		
+		// Chrome 1 - 79
+		console.log('window.chrome(value):', !!window.chrome);   
+		console.log('window.chrome.webstore(value):', !!window.chrome.webstore);   
+		console.log('window.chrome.runtime(value):', !!window.chrome.runtime);   
+		console.log('navigator.userAgent.indexOf Chrome/ (else):', (navigator.userAgent.indexOf(' Chrome/') >= 0));   
+		
+		var isChrome = (!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) || (navigator.userAgent.indexOf(' Chrome/') >= 0);
+		
+		// Edge (based on chromium) detection
+		var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
+		
+		// Blink engine detection
+		var isBlink = (isChrome || isOpera) && !!window.CSS;
+		
+		var output = 'Detecting browsers by ducktyping:\n';
+		output += 'isFirefox: ' + isFirefox + '\n<br>';
+		output += 'isChrome: ' + isChrome + '\n<br>';
+		output += 'isSafari: ' + isSafari + '\n<br>';
+		output += 'isOpera: ' + isOpera + '\n<br>';
+		output += 'isIE: ' + isIE + '\n<br>';
+		output += 'isEdge: ' + isEdge + '\n<br>';
+		output += 'isEdgeChromium: ' + isEdgeChromium + '\n<br>';
+		output += 'isBlink: ' + isBlink + '\n<br>'; 																				
+
+
+var elementBrowser = document.getElementById("browser");
+elementBrowser.textContent = output;	
+
+
+}
+
+function getBrowserVersion() {
+
+		// This code snippet splits a string in a special notation
+		var splitUpString;
+		console.log('userAgent:', navigator.userAgent);
+		
+		if (navigator.userAgent.includes("Chrome")) {
+		  // YES! The user is suspected to support look-behind regexps
+		  // DO NOT USE /(?<=[A-Z])/. It will cause a syntax error in
+		  // browsers that do not support look-behind expressions
+		  // because all browsers parse the entire script, including
+		  // sections of the code that are never executed.
+		  const camelCaseExpression = new RegExp("(?<=[A-Z])");
+		  splitUpString = (str) => String(str).split(camelCaseExpression);
+		  console.log('getBrowserVersion(if):', splitUpString);   
+		  return splitUpString;
+	  
+		} else {
+		  // This fallback code is much less performant, but works
+		  splitUpString = (str) =>
+		    String(str)
+		      .split(/(.*?[A-Z])/)
+		      .filter(Boolean);
+		    console.log('getBrowserVersion(else):', splitUpString);   
+			return splitUpString;
+		}
+}
+
+
 
 </script>
     
 </head>
 <body>
-ChtLand WalletConnect V0.2.9	
+ChtLand WalletConnect V0.3.0	
+	
+	  <h1>Browser:</h1>
+    <div id="browser"></div>
 	
     <h1>錢包Address:</h1>
     <div id="address"></div>
     <h1>錢包餘額:</h1>
     <div id="balance"></div>
  <br/>
- 
+
  
 	
-    <script type="module" src="meta.js?v=0.0.3"></script>
+    <script type="module" src="meta.js?v=0.0.32"></script>
 <!-- Code injected by live-server -->
 <script>
 var addressElement = document.getElementById("address");
 addressElement.textContent = '未連結錢包';	
-	
  
 </script>
 </body>
