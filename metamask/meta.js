@@ -5,8 +5,11 @@ function isEdge() {
 	return (!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) || (navigator.userAgent.indexOf(' Chrome/') >= 0 && navigator.userAgent.indexOf(' Edg/') >= 0);
 }
 function isMetamaskWebView() {
-	return ((navigator.userAgent.indexOf('WebView MetaMaskMobile/') >= 0);
+	return (navigator.userAgent.indexOf('WebView MetaMaskMobile/') >= 0);
 } 
+ 
+updateConsole('meta.js start');	
+
 window.addEventListener('load', async () => {
 	  // 檢查是否存在 MetaMask
 updateConsole('檢查是否存在 MetaMask');	
@@ -93,4 +96,4 @@ updateConsole('The Browser is Others.');
  
 
 });
-    console.log('getJSON network access is finished.');
+updateConsole('meta.js is finished.');
