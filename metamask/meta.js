@@ -5,7 +5,7 @@ function isEdge() {
 	return (!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) || (navigator.userAgent.indexOf(' Chrome/') >= 0 && navigator.userAgent.indexOf(' Edg/') >= 0);
 }
 function isMetamaskWebView() {
-	return (navigator.userAgent.indexOf('WebView MetaMaskMobile/') >= 0);
+	return (navigator.userAgent.indexOf('WebView MetaMaskMobile') >= 0);
 } 
  
 updateConsole('meta.js start');	
