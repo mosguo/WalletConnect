@@ -73,7 +73,7 @@ window.addEventListener('load', async () => {
  		} else if (isMetamaskWebView()){
 			browser = 'MetamaskWebView'; 
  			console.log('The Browser is MetamaskWebView.');
-			window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+			window.location.href = 'https://metamask.app.link/dapp/' + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else {
 			browser = 'Others'; 
  			console.log('The Browser is Others.');
