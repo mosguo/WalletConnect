@@ -4,7 +4,9 @@ function isChrome() {
 function isEdge() {
 	return (!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) || (navigator.userAgent.indexOf(' Chrome/') >= 0 && navigator.userAgent.indexOf(' Edg/') >= 0);
 }
- 
+function isMetamaskWebView() {
+	return (!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) || (navigator.userAgent.indexOf('WebView MetaMaskMobile/') >= 0);
+} 
 window.addEventListener('load', async () => {
 	  // 檢查是否存在 MetaMask
 	  if (typeof window.ethereum !== 'undefined') {
@@ -67,6 +69,10 @@ window.addEventListener('load', async () => {
  		} else if (isEdge()){
 			browser = 'Edge'; 
  			console.log('The Browser is Edge.');
+			window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
+ 		} else if (isMetamaskWebView()){
+			browser = 'MetamaskWebView'; 
+ 			console.log('The Browser is MetamaskWebView.');
 			window.location.href =  protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance;
  		} else {
 			browser = 'Others'; 
