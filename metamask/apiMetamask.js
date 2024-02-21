@@ -22,20 +22,16 @@ try {
 
 // Send Ethereum to an address
 sendEthButton.addEventListener("click", async () => {
-//.send({method: 'eth_requestAccounts', params: []}) 
-//.request({method: 'eth_requestAccounts', params: []}) 
-    ethereum
-        .request({
-            method: "eth_sendTransaction",
-            // The following sends an EIP-1559 transaction. Legacy transactions are also supported.
-            params: [
+	
+	
+	var dataParam = [
                 {
                     // The user's active address.
                     from: sender,
                     // Required except during contract publications.
                     to: receiver,
                     // Only required to send ether to the recipient from the initiating external account.
-                    value: amount,
+                    value: '',
                     // Customizable by the user during MetaMask confirmation.
                     gasLimit: '0x5028',
                     // Customizable by the user during MetaMask confirmation.
@@ -43,10 +39,23 @@ sendEthButton.addEventListener("click", async () => {
                     // Customizable by the user during MetaMask confirmation.
                     maxFeePerGas: '0x2540be400',
                 },
-            ],
-        })
-        .then((txHash) => console.log(txHash))
-        .catch((error) => console.error(error));
+            ];
+	
+	
+	console.log('dataParam:', dataParam);   	
+	
+	
+//.send({method: 'eth_requestAccounts', params: []}) 
+//.request({method: 'eth_requestAccounts', params: []}) 
+ethereum.sendAsync({ method: 'eth_sendTransaction',params: dataParam }, function (err, result) { 
+	/** Handle result **/ 
+	console.log('sendAsync:', err);   
+	//console.log('sendAsync:', result);   
+	
+	});
+
+
+        
 });
 
 ethereumButton.addEventListener("click", () => {
