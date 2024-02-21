@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
+		<meta http-equiv='cache-control' content='no-cache'>
+		<meta http-equiv='expires' content='0'>
+		<meta http-equiv='pragma' content='no-cache'>
+
     <title>metamask bind result</title>
- 
+    <script src="web3.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 <script>
- 
+var timestamp = new Date();
+var lable = timestamp.getTime();
+//document.write("<script type='module' src='apiMetamask.js?version=" + lable + "'><\/script>");
+</script>  
+<script type='module' src='apiMetamask.js?version=123122'></script>
+<script> 
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -13,23 +24,31 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
-</script>
-    
+ 
+</script> 
 </head>
 <body>
 ChtLand Wallet Board V0.3.0
 
-    <h1>終端用戶:</h1>
+	<h2>終端用戶:</h2>
 
 	  <b>Browser:</b><div id="browser"></div><br/>
     <b>User-Agent:</b><div id="agent"></div><br/>
     <b>idMember:</b><div id="idMember"></div><br/>
 
-    <h1>錢包Address:</h1>
-    <div id="address">未連結錢包</div>
-    <h1>錢包餘額:</h1>
-    <div id="balance"></div>
- <br/>
+	<h2>錢包資訊:</h2>
+    錢包位址:<div id="address">未連結錢包</div>
+		錢包餘額:<div id="balance"></div>
+ 	<hr/>
+ 
+ 		<a href="" id="targetService"></a>
+ 
+	<hr/>
+	<h2>錢包操作:</h2> 
+		接收端：<input type="text" id="receiver" name="receiver" maxlength="42" value="0xef4ffecffc3a42115f617d7ab1a1bfe62e1c90dd" size="42"/><br/>
+		額  度：<input type="text" id="amount" name="amount" maxlength="21" value="3"/><br/>
+		<button class="enableEthereumButton btn">Enable Ethereum</button>
+		<button class="sendEthButton btn">Send ETH</button>
  
 <!-- Code injected by live-server -->
 <script>
@@ -63,7 +82,13 @@ addressElement.textContent = '未連結錢包';
 	elemBalance.textContent = balance;
 
 
- //window.location.href = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + userAddress + '&balance=' + balance;
+	var urlTarget = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + userAddress + '&balance=' + balance;
+	var elemtargetService = document.getElementById("targetService");
+	elemtargetService.href = urlTarget;
+	elemtargetService.innerHTML = '手動轉導 至 yocity(' + urlTarget + ')';
+  
+  
+  //window.location.href = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + userAddress + '&balance=' + balance;
 </script>
 </body>
 </html>

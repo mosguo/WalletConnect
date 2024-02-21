@@ -59,10 +59,19 @@ updateConsole('MetaMask extension/Pplugin not detected.');
 	    //window.location.href = 'https://metamask.app.link/dapp/10.144.132.65:8080/metamask/board.html?address=' + userAddress + '&balance=' + balance;
 	  }
 
+
+ 
+    var ip = location.host;
+ 
 		//判斷進行不userAgent同方式的導向
 		console.log('userAgent:', navigator.userAgent);
 		var protocolServer = 'https://';
 		var hostServer = 'ephemeral-cascaron-b1d97f.netlify.app';
+		if (ip=='10.144.132.65:8080') {
+			var protocolServer = 'http://';
+			var hostServer = ip;			
+		}
+		//alert(protocolServer + hostServer + '/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance);
 		//hostServer = 'http://10.144.132.65:8080';
 		
 		//Chrome

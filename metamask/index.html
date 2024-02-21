@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta charset="utf-8">
 		<meta http-equiv='cache-control' content='no-cache'>
 		<meta http-equiv='expires' content='0'>
 		<meta http-equiv='pragma' content='no-cache'>
@@ -11,8 +10,13 @@
     <!--//https://cdnjs.cloudflare.com/ajax/libs/web3/4.2.2/-->
     <script src="web3.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    
     <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+<script>
+var timestamp = new Date();
+var lable = timestamp.getTime();
+document.write("<script type='module' src='meta.js?version=" + lable + "'><\/script>");
+</script>  
+
 <script>
 function updateHtmlContent() 
 {
@@ -129,19 +133,12 @@ ChtLand WalletConnect V0.20.1106
 	var elemAgent = document.getElementById("agent");
 	elemAgent.textContent = navigator.userAgent;	 
 	
-updateConsole('initial');	
-</script> 
-	
-
-<script type="module" src="meta.js?v=0.0.36"></script>
-<script>
-  
-
+updateConsole('initial');
 
 updateConsole('finished');	
 
-var elemConsole = document.getElementById("console");
-  elemConsole.innerHTML = elemConsole.innerHTML.replace(/\r\n?/g, '<br />')
+//var elemConsole = document.getElementById("console");
+//  elemConsole.innerHTML = elemConsole.innerHTML.replace(/\r\n?/g, '<br />')
 
 
 
