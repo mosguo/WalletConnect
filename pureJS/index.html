@@ -19,7 +19,7 @@
         params: [],
       })
       .then((res) => alert('request accounts' + res))
-      .catch((e) => console.log('request accounts ERR', e));
+      .catch((e) => alert('request accounts ERR'+ e));
   }
 
   function addEthereumChain() {
@@ -37,7 +37,7 @@
         ],
       })
       .then((res) => alert('add'+ res))
-      .catch((e) => console.log('ADD ERR', e));
+      .catch((e) => alert('ADD ERR'+ e));
   }
   connect();
 </script>
