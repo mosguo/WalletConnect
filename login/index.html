@@ -4,7 +4,13 @@
 <head>
     <title>MetaMask Login Demo</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+    var notMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && (navigator.userAgent.indexOf("MetaMaskMobile") != -1);
+    alert(notMetaMaskBrowserMobile);
+
+    window.location.href = 'metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
+</script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
     <!--===============================================================================================-->
@@ -24,6 +30,7 @@
     <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
     <script src="./node_modules/web3/dist/web3.min.js"></script>
 </head>
+
 <body>
 
 <div class="limiter">
@@ -64,15 +71,16 @@
                     </a>
                 </div>
 
+
+            </form>
+
+            <div style="display:none">
                 <div class="text-center p-t-136">
                     <a class="txt2" href="https://www.frank.hk/blog">
                         查看更多網誌內容
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>
-            </form>
-
-            <div>
                 <div style="font-size: 80%; margin-top: 30px;display: block;">其它 demo：<br/>
                     <a style="" href="https://demo.frank.hk/demo/nft" target="_blank">NFT Gallery</a>
                     <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/metamasklogin" target="_blank">MetaMask 登入</a>
