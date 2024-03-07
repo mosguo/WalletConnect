@@ -11,11 +11,11 @@
     //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
     //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
-        alert('Android general; launch metamask-->');
-        window.location.href = 'metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
+        //alert('Android general; launch metamask-->');
+        window.location.href = 'metamask://https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
-        alert('iPhone general; launch metamask-->');
-        window.location.href = 'metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
+        //alert('iPhone general; launch metamask-->');
+        window.location.href = 'metamask://https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
     }
 
 </script>
@@ -70,6 +70,12 @@
                     </button>
                 </div>
 
+
+
+
+            </form>
+
+            <div style="display:none">
                 <div class="text-center p-t-12">
 						<span class="txt1">
 							此Demo演示使用 MetaMask 登入，具體教學請參考這裡：
@@ -78,11 +84,6 @@
                         如何用 metamask 登入。
                     </a>
                 </div>
-
-
-            </form>
-
-            <div style="display:none">
                 <div class="text-center p-t-136">
                     <a class="txt2" href="https://www.frank.hk/blog">
                         查看更多網誌內容
@@ -161,8 +162,8 @@
                                 if (loginResult.code == 0) {
                                     // login success
                                     $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 驗證簽名成功</div>");
-                                    $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功 🎉</div>");
-                                    $("#btnLogin").html('🎉 登入成功 🎉');
+                                    $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功,可以轉導至dApp(@todo) 🎉</div>");
+                                    $("#btnLogin").html('🎉 轉導 🎉');
                                 } else {
                                     $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">第四步: Backend 驗證簽名失敗</div>");
                                     $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">登入失敗</div>");
