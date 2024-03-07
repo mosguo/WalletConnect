@@ -120,13 +120,25 @@
 <script src="./vendor/tilt/tilt.jquery.min.js"></script>
 <script >
     var address;
+    var signatureMetamask;
     $('.js-tilt').tilt({
         scale: 1.1
     })
 
     function redirectYoCity() {
-    	var urlTarget = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + address ;
-	    window.location.href = 'chrome://' + urlTarget;
+    	var urlTarget = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + address + '&signature=' + signatureMetamask;
+        alert(urlTarget);
+        if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
+            //alert('Android general; launch metamask-->');
+            window.location.href = 'chrome://' + urlTarget;
+        } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
+            //alert('iPhone general; launch metamask-->');
+            window.location.href = 'chrome://' + urlTarget;
+        } else {
+            window.location.href = urlTarget;
+        }
+
+
 	}
 
 
@@ -154,6 +166,7 @@
                 window.web3.eth.personal.sign(hexData, address, function(result, signature){
                     console.log(result);
                     console.log(signature);
+                    signatureMetamask = signature;
                     $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;margin:4px;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
 
                     if (!result) {
@@ -167,7 +180,7 @@
                                 if (loginResult.code == 0) {
                                     // login success
                                     $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 驗證簽名成功</div>");
-                                    $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功,可以轉導至dApp(@todo) 🎉</div>");
+                                    $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功,可以轉導至YoCity 🎉</div>");
                                     //style="display: none;"
                                     //$("#btnYoCity").html('🎉 轉導 🎉');
                                     $("#btnLogin").hide();
