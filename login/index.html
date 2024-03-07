@@ -70,6 +70,9 @@
                     <button class="login100-form-btn" type="button" onclick="login();" id="btnLogin" style="display: none;">
                         已連接，可以登入
                     </button>
+                    <button class="login100-form-btn" type="button" onclick="redirectYoCity();" id="btnYoCity" style="display: none;">
+                        已連接，可以登入
+                    </button>
                 </div>
 
 
@@ -127,6 +130,12 @@
         scale: 1.1
     })
 
+    function redirectYoCity() {
+    	var urlTarget = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + address ;
+	    window.location.href = 'chrome://' + urlTarget;
+	}
+
+
     function login() {
         $("#btnLogin").attr("disabled", true);
 
@@ -165,7 +174,8 @@
                                     // login success
                                     $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 驗證簽名成功</div>");
                                     $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功,可以轉導至dApp(@todo) 🎉</div>");
-                                    $("#btnLogin").html('🎉 轉導 🎉');
+                                    //style="display: none;"
+                                    $("#btnYoCity").html('🎉 轉導 🎉');
                                 } else {
                                     $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">第四步: Backend 驗證簽名失敗</div>");
                                     $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">登入失敗</div>");
