@@ -1,4 +1,15 @@
-<script src="node_modules/@metamask/sdk/dist/browser/iife/metamask-sdk.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv='cache-control' content='no-cache'>
+ <meta http-equiv='expires' content='0'>
+ <meta http-equiv='pragma' content='no-cache'>
+
+ <title>metamask bind result</title>
+
+
+ <script src="node_modules/@metamask/sdk/dist/browser/iife/metamask-sdk.js"></script>
 <!--script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script-->
 <script>
   const sdk = new MetaMaskSDK.MetaMaskSDK({
@@ -18,7 +29,14 @@
         method: 'eth_requestAccounts',
         params: [],
       })
-      .then((res) => alert('request accounts' + res))
+      .then((res) => {
+        alert('request accounts\n' + res)
+
+	      var addressElement = document.getElementById("address");
+	      addressElement.textContent = res;
+
+        }
+      )
       .catch((e) => alert('request accounts ERR'+ e));
   }
 
@@ -36,14 +54,33 @@
           },
         ],
       })
-      .then((res) => alert('add'+ res))
+      .then((res) => {
+        alert('add' + res)
+        alert('add2' + res)
+        }
+      )
       .catch((e) => alert('ADD ERR'+ e));
   }
-  connect();
 </script>
-
-
+</head>
+<body>
+<br>
+<br>
+<h2>錢包資訊:</h2>
+錢包位址:<div id="address">未連結錢包</div>
+錢包餘額:<div id="balance"></div>
+<hr/>
 
 <button onclick="connect()">Connect</button>
 
 <button onclick="addEthereumChain()">ADD ETHEREUM CHAIN</button>
+
+<a href="'https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/metamask/index.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance">開啟metamask App Index</a>
+<a href="'https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/metamask/board.html?browser=' + browser + '&idMember=' + idMember + '&address=' + userAddress + '&balance=' + balance">開啟metamask App Board</a>
+
+
+ <script>
+      connect();
+</script>
+
+</body></html>
