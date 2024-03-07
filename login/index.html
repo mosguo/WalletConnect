@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MetaMask Login Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./css/util.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <!--===============================================================================================-->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="./images/img-01.png" alt="IMG">
+            </div>
+
+            <form class="login100-form validate-form">
+					<span class="login100-form-title">
+						MetaMask 登入範例
+					</span>
+
+                <div class="text-center txt2" id="divaddr" style="overflow-wrap: break-word;">
+
+                </div>
+
+
+
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="button" onclick="connectMetaMask();" id="btnConnect">
+                        連接 Wallet
+                    </button>
+                    <button class="login100-form-btn" type="button" onclick="login();" id="btnLogin" style="display: none;">
+                        已連接，可以登入
+                    </button>
+                </div>
+
+                <div class="text-center p-t-12">
+						<span class="txt1">
+							此Demo演示使用 MetaMask 登入，具體教學請參考這裡：
+						</span>
+                    <a class="txt2" href="https://www.frank.hk/blog/metamask-login/" target="_blank">
+                        如何用 metamask 登入。
+                    </a>
+                </div>
+
+                <div class="text-center p-t-136">
+                    <a class="txt2" href="https://www.frank.hk/blog">
+                        查看更多網誌內容
+                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </form>
+
+            <div>
+                <div style="font-size: 80%; margin-top: 30px;display: block;">其它 demo：<br/>
+                    <a style="" href="https://demo.frank.hk/demo/nft" target="_blank">NFT Gallery</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/metamasklogin" target="_blank">MetaMask 登入</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/nft-erc1155" target="_blank">ERC1155 NFT</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/nft-royalty" target="_blank">NFT 版稅</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/nft-usdt" target="_blank">ERC20代幣買NFT</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/nft-mystery-box" target="_blank">盲盒 NFT</a><br/>
+                    <a style="" href="https://demo.frank.hk/demo/nft-list" target="_blank">讀取指定地址所有 NFT</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/nft-lottery" target="_blank">Smart Contract 大抽獎</a>
+                    <a style="margin-left: 15px;" href="https://demo.frank.hk/demo/nft-signature" target="_blank">智能合約簽名驗證</a>
+                    <a style="margin-left: 8px;" href="https://demo.frank.hk/demo/crossmint" target="_blank">信用卡買NFT</a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="./vendor/bootstrap/js/popper.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="./vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="./vendor/tilt/tilt.jquery.min.js"></script>
+<script >
+    var address;
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+
+    function login() {
+        $("#btnLogin").attr("disabled", true);
+
+        // get nonce
+        $.ajax({
+            type: "GET",
+            url: "https://demo.frank.hk/api/metamask/nonce/"+address,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+
+                $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
+                //$("#divaddr").append("<div class=\"alert alert-secondary\" role=\"alert\">Hex Nonce (應該同 MetaMask 顯示一致)： <small>"+window.web3.utils.utf8ToHex(data.payload)+"</small></div>");
+
+                //var hexData = window.web3.utils.utf8ToHex(data.payload);
+                var hexData = data.payload;
+                //var hexData = "Hello welcome to frank.hk";
+
+                console.log("payload", data.payload);
+
+                $("#btnLogin").html("等待 MetaMask 認證2 ");
+                window.web3.eth.personal.sign(hexData, address, function(result, signature){
+                    console.log(result);
+                    console.log(signature);
+                    $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
+
+                    if (!result) {
+                        $.ajax({
+                            type: "POST",
+                            url: "https://demo.frank.hk/api/metamask/login",
+                            data: JSON.stringify({ signature: signature, nonce:data.payload, hexNonce:hexData, address:address }),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(loginResult){
+                                if (loginResult.code == 0) {
+                                    // login success
+                                    $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 驗證簽名成功</div>");
+                                    $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功 🎉</div>");
+                                    $("#btnLogin").html('🎉 登入成功 🎉');
+                                } else {
+                                    $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">第四步: Backend 驗證簽名失敗</div>");
+                                    $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">登入失敗</div>");
+                                }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                        });
+
+                    }
+                });
+            },
+            failure: function(errMsg) {
+                alert(errMsg);
+            }
+        });
+    }
+
+    function connectMetaMask(){
+        window.web3 = new Web3(window.web3.currentProvider);
+        ethereum.request({ method: 'eth_requestAccounts' }).then((result) => {
+            address = result[0];
+            $("#divaddr").append("<div class=\"alert alert-primary\" style=\"color:#004085;background-color:#cce5ff;border-color:#b8daff;\" role=\"alert\">第一步: 錢包連接成功： "+result[0]+"<br/>請按「登入」繼續</div>");
+            $("#btnConnect").hide();
+            $("#btnLogin").show();
+        }).catch((error) => {
+            console.log("error",error);
+        });
+    }
+
+
+    $(function(){
+        if (window.web3) {
+        } else {
+            $("#divaddr").append("<div class=\"alert alert-danger\" role=\"alert\">你似乎沒有安裝 MetaMask，可以先安裝再試。</div>");
+        }
+    });
+
+
+</script>
+<!--===============================================================================================-->
+<script src="./js/main.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25129655-2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-25129655-2');
+</script>
+
+
+</body>
+</html>
