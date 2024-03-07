@@ -6,10 +6,13 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
-    var notMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && (navigator.userAgent.indexOf("MetaMaskMobile") != -1);
-    alert(notMetaMaskBrowserMobile);
+    var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && (navigator.userAgent.indexOf("MetaMaskMobile") >= 0);
+    alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
+    alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
+    alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
 
-    window.location.href = 'metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
+
+    if (isMetaMaskBrowserMobile) window.location.href = 'metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
 </script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
