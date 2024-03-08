@@ -37,14 +37,16 @@ function goTo(url)
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
          alert('Android general; launch metamask-->' + deeplink);
         // location.href = deeplink;
-window.open(deeplink, "_self");
+        //window.open(deeplink, "_self");
+
+        window.location.href = "metamask:ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
          alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
       //  var targeturl = window.location.origin + "/" + deeplink;
-
+        window.location.href = "metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
 //window.location.assign(deeplink);
-window.location.href = deeplink;
+//window.location.href = deeplink;
 //window.open(deeplink, "_self");
     }
 
