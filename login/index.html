@@ -28,7 +28,7 @@ function goTo(url)
      a.click();
 }
 
-alert('Starting');
+alert('Starting referrer:' + document.referrer);
     var deeplink = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
     //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
     //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
@@ -41,13 +41,13 @@ alert('Starting');
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
-     var linkHref = document.getElementById("linkToMetamask");
-    linkHref.click();
+
+        window.location.href = deeplink;
     }
 
 
     var linkHref = document.getElementById("linkToMetamask");
-    linkHref.click();
+    linkHref.onclick();
 </script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
