@@ -30,7 +30,7 @@ function goTo(url)
     //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
     //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
-        //alert('Android general; launch metamask-->');
+         alert('Android general; launch metamask-->' + deeplink);
         // location.href = deeplink;
         goTo(deeplink);
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
