@@ -8,7 +8,22 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
+<script>
+function goTo(url)
+{
+    var a = document.createElement("a");
+    if(!a.click) //for IE
+    {
+         window.location = url;
+         return;
+    }
+    a.setAttribute("href", url);
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+}
+
+
     var deeplink = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
     //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
     //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
@@ -17,7 +32,7 @@
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('Android general; launch metamask-->');
         // location.href = deeplink;
-        window.location = deeplink;
+        goTo(deeplink);
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
@@ -155,12 +170,16 @@
             dataType: "json",
             success: function(data){
 
+                data.payload = data.payload.replace("frank.hk", "YoCity");
+
+                alert(JSON.stringify(data.payload));
                 $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;margin:4px;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
                 //$("#divaddr").append("<div class=\"alert alert-secondary\" role=\"alert\">Hex Nonce (應該同 MetaMask 顯示一致)： <small>"+window.web3.utils.utf8ToHex(data.payload)+"</small></div>");
 
                 //var hexData = window.web3.utils.utf8ToHex(data.payload);
                 var hexData = data.payload;
-                //var hexData = "Hello welcome to frank.hk";
+
+                //var hexData = "Hello welcome to YoCity";
 
                 console.log("payload", data.payload);
 
