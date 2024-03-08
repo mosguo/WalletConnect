@@ -16,7 +16,8 @@
     //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('Android general; launch metamask-->');
-         location.href = deeplink;
+        // location.href = deeplink;
+        location.replace(deeplink);
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
@@ -50,7 +51,7 @@
         <div class="wrap-login100">
 
             <div class="login100-pic js-tilt" data-tilt>
-                <img src="./images/img-03.png" alt="IMG">
+                <img src="./images/img-04.png" alt="IMG">
             </div>
 
             <form class="login100-form validate-form">
