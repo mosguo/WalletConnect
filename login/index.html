@@ -246,7 +246,7 @@
 
 function renderUrl(url){
 	document.getElementById("url").href = url;
-	document.getElementById("url").innerText = url;
+	document.getElementById("url").innerText = '透過 Metamask App 綁定 YoCity';
 
 	const baseImgUrl = "http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${DATA}&qzone=1&margin=0&size=250x250&ecc=L";
 	const qrCodeUrl = baseImgUrl.replace('${DATA}', escape(url));
@@ -261,24 +261,6 @@ function renderUrl(url){
 	}
 }
 
-function goTo(url)
-{
-
-
-    var a = document.createElement("a");
-    if(!a.click) //for IE
-    {
-
-    alert('IE general; launch metamask-->' + url);
-         window.location = url;
-         return;
-    }
-    a.setAttribute("href", url);
-    a.style.display = "none";
-    document.body.appendChild(a);
-    alert('general; launch metamask-->' + url);
-     a.click();
-}
     var dapp_url = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
     var BASE_URL = 'https://metamask.app.link';
 	if (dapp_url.search("https://") !== -1){
@@ -288,25 +270,16 @@ function goTo(url)
 		alert('The url needs to start with https://');
 	}
 
-
     //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
     //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
     //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
     //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('Android general; launch metamask-->' + deeplink);
-        // location.href = deeplink;
-        //window.open(deeplink, "_self");
-
-        window.location.href = "metamask:1@https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
+        //window.location.href = deeplink;
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('iPhone general; launch metamask-->');
-       // window.location.href = deeplink;
-      //  var targeturl = window.location.origin + "/" + deeplink;
-      //  window.location.href = "metamask:1@https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
-//window.location.assign(deeplink);
-//window.location.href = deeplink;
-//window.open(deeplink, "_self");
+        //window.location.href = deeplink;
     }
 
 
