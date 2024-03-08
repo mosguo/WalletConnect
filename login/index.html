@@ -8,50 +8,7 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-function goTo(url)
-{
 
-
-    var a = document.createElement("a");
-    if(!a.click) //for IE
-    {
-
-    alert('IE general; launch metamask-->' + url);
-         window.location = url;
-         return;
-    }
-    a.setAttribute("href", url);
-    a.style.display = "none";
-    document.body.appendChild(a);
-    alert('general; launch metamask-->' + url);
-     a.click();
-}
-
-
-    var deeplink = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
-    //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
-    //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
-    //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
-    //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
-    if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
-         alert('Android general; launch metamask-->' + deeplink);
-        // location.href = deeplink;
-        //window.open(deeplink, "_self");
-
-        window.location.href = "metamask:1@https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
-    } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
-         alert('iPhone general; launch metamask-->');
-       // window.location.href = deeplink;
-      //  var targeturl = window.location.origin + "/" + deeplink;
-        window.location.href = "metamask:1@https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
-//window.location.assign(deeplink);
-//window.location.href = deeplink;
-//window.open(deeplink, "_self");
-    }
-
-
-</script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
     <!--===============================================================================================-->
@@ -83,9 +40,9 @@ function goTo(url)
             </div>
 
             <form class="login100-form validate-form">
-					<span class="login100-form-title">
-						YoCity 綁定 MetaMask 範例
-					</span>
+                <span class="login100-form-title">
+                    YoCity 綁定 MetaMask 範例
+                </span>
                 <div class="text-center txt2" id="divaddr" style="overflow-wrap: break-word;margin:6px;" border="2">
 
                 </div>
@@ -101,6 +58,11 @@ function goTo(url)
                         🎉 轉導 🎉
                     </button>
                 </div>
+
+
+                <a id="url" style="display: none;"></a>
+                <p id="qr-wrapper" style="display: none;"></p>
+
 
             </form>
 
@@ -185,7 +147,7 @@ function goTo(url)
 
                 data.payload = data.payload.replace("frank.hk", "YoCity");
 
-                alert(JSON.stringify(data.payload));
+                //alert(JSON.stringify(data.payload));
                 $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;margin:4px;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
                 //$("#divaddr").append("<div class=\"alert alert-secondary\" role=\"alert\">Hex Nonce (應該同 MetaMask 顯示一致)： <small>"+window.web3.utils.utf8ToHex(data.payload)+"</small></div>");
 
@@ -255,6 +217,8 @@ function goTo(url)
         if (window.web3) {
         } else {
             $("#divaddr").append("<div class=\"alert alert-danger\" role=\"alert\">你似乎沒有安裝 MetaMask，可以先安裝再試。</div>");
+            $("#url").show();
+            $("#qr-wrapper").show();
         }
     });
 
@@ -271,6 +235,78 @@ function goTo(url)
 
     gtag('config', 'UA-25129655-2');
 </script>
+<script>
+
+
+
+function renderUrl(url){
+	document.getElementById("url").href = url;
+	document.getElementById("url").innerText = url;
+
+	const baseImgUrl = "http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${DATA}&qzone=1&margin=0&size=250x250&ecc=L";
+	const qrCodeUrl = baseImgUrl.replace('${DATA}', escape(url));
+
+	if(document.getElementById("qr-wrapper").firstElementChild){
+		const img = document.getElementById("qr-wrapper").firstElementChild;
+		img.src = qrCodeUrl;
+	}else{
+		const img = document.createElement("img");
+		img.src = qrCodeUrl
+		document.getElementById("qr-wrapper").appendChild(img);
+	}
+}
+
+function goTo(url)
+{
+
+
+    var a = document.createElement("a");
+    if(!a.click) //for IE
+    {
+
+    alert('IE general; launch metamask-->' + url);
+         window.location = url;
+         return;
+    }
+    a.setAttribute("href", url);
+    a.style.display = "none";
+    document.body.appendChild(a);
+    alert('general; launch metamask-->' + url);
+     a.click();
+}
+    var dapp_url = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
+    var BASE_URL = 'https://metamask.app.link';
+	if (dapp_url.search("https://") !== -1){
+		var url = BASE_URL + '/dapp/' + dapp_url.replace('https://', '');
+		renderUrl(url);
+	} else {
+		alert('The url needs to start with https://');
+	}
+
+
+    //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
+    //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
+    //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
+    //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
+    if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
+        // alert('Android general; launch metamask-->' + deeplink);
+        // location.href = deeplink;
+        //window.open(deeplink, "_self");
+
+        window.location.href = "metamask:1@https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
+    } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
+        // alert('iPhone general; launch metamask-->');
+       // window.location.href = deeplink;
+      //  var targeturl = window.location.origin + "/" + deeplink;
+      //  window.location.href = "metamask:1@https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
+//window.location.assign(deeplink);
+//window.location.href = deeplink;
+//window.open(deeplink, "_self");
+    }
+
+
+</script>
+
 
 
 </body>
