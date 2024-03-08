@@ -24,7 +24,7 @@ function goTo(url)
     a.setAttribute("href", url);
     a.style.display = "none";
     document.body.appendChild(a);
-   alert('general; launch metamask-->' + url);
+    alert('general; launch metamask-->' + url);
      a.click();
 }
 
@@ -41,8 +41,9 @@ alert('Starting');
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
+       goTo(deeplink);
     }
-goTo(deeplink);
+
 </script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
