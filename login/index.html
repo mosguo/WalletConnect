@@ -41,8 +41,11 @@ alert('Starting referrer:' + document.referrer);
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
+        var targeturl = window.location.origin + "/" + deeplink;
 
-        window.location.href = deeplink;
+//window.location.assign(targeturl);
+//window.location.href = targeturl;
+window.open(targeturl, "_self");
     }
 
 
