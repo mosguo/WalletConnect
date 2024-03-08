@@ -9,16 +9,17 @@
     <meta http-equiv='pragma' content='no-cache'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
+    var deeplink = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
     //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
     //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
     //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
     //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('Android general; launch metamask-->');
-        window.location.href = 'metamask://https://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
+         location.href = deeplink;
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         //alert('iPhone general; launch metamask-->');
-        window.location.href = 'metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html';
+        window.location.href = deeplink;
     }
 
 </script>
@@ -43,7 +44,7 @@
 </head>
 
 <body>
-
+<a href="https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html">aaaa</a>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
