@@ -37,20 +37,18 @@ alert('Starting referrer:' + document.referrer);
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
          alert('Android general; launch metamask-->' + deeplink);
         // location.href = deeplink;
-        goTo(deeplink);
+ window.location.assign(deeplink);
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
-        //alert('iPhone general; launch metamask-->');
+         alert('iPhone general; launch metamask-->');
        // window.location.href = deeplink;
-        var targeturl = window.location.origin + "/" + deeplink;
+      //  var targeturl = window.location.origin + "/" + deeplink;
 
-//window.location.assign(targeturl);
-//window.location.href = targeturl;
-window.open(targeturl, "_self");
+//window.location.assign(deeplink);
+//window.location.href = deeplink;
+window.open(deeplink, "_self");
     }
 
-
-    var linkHref = document.getElementById("linkToMetamask");
-    linkHref.onclick();
+ 
 </script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="./images/icons/favicon.ico"/>
