@@ -47,7 +47,10 @@
                 </div>
 
                 <div class="text-center txt2" id="qrcode" style="overflow-wrap: break-word;margin:4px;" >
-                    <a id="url" style="display: none;"></a>
+                    <a id="url" style="display: none;"></a><br/>
+                    
+                     <a href="metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html">invocate Metamask</a><br/>
+                   
                     <p id="qr-wrapper" style="display: none;"></p>
                 </div>
 
@@ -143,7 +146,7 @@
         // get nonce
         $.ajax({
             type: "GET",
-            url: "https://demo.frank.hk/api/metamask/nonce/"+address,
+            url: "./getNonce.jsp?address="+address,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function(data){
@@ -167,7 +170,8 @@
                     console.log(signature);
                     signatureMetamask = signature;
                     $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;margin:4px;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
-
+										
+										//{"code":0,"message":null,"payload":null}
                     if (!result) {
                         $.ajax({
                             type: "POST",
@@ -178,7 +182,7 @@
                             success: function(loginResult){
                                 if (loginResult.code == 0) {
                                     // login success
-                                    $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 驗證簽名成功</div>");
+                                    $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 收到簽章(待通知SSO/OAuth)</div>");
                                     $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功,可以轉導至YoCity 🎉</div>");
                                     //style="display: none;"
                                     //$("#btnYoCity").html('🎉 轉導 🎉');
@@ -207,7 +211,7 @@
         window.web3 = new Web3(window.web3.currentProvider);
         ethereum.request({ method: 'eth_requestAccounts' }).then((result) => {
             address = result[0];
-            $("#divaddr").append("<div class=\"alert alert-primary\" style=\"color:#004085;background-color:#cce5ff;border-color:#b8daff;\" role=\"alert\">第一步: 錢包連接成功： "+result[0]+"<br/>請按「登入」繼續</div>");
+            $("#divaddr").append("<div class=\"alert alert-primary\" style=\"color:#004085;background-color:#cce5ff;border-color:#b8daff;\" role=\"alert\">第一步: 錢包連接成功： "+result[0]+"<br/>請繼續</div>");
             $("#btnConnect").hide();
             $("#btnLogin").show();
         }).catch((error) => {
