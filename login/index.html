@@ -51,7 +51,7 @@
                     
                      <!-- display: none;   a href="metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html">invocate Metamask</a--><br/>
                    
-                    <p id="qr-wrapper" style="display: none;"></p>
+                    <p id="qr-wrapper" style="display: none; vlign:center;"></p>
                 </div>
 
                 <div class="container-login100-form-btn">
@@ -260,7 +260,7 @@ function renderUrl(url){
 		img.src = qrCodeUrl;
 	}else{
 		const img = document.createElement("img");
-		img.style.width = "150px"; 
+		img.style.width = "100px"; 
 		img.style.height = "250px";
 		img.src = qrCodeUrl
 		document.getElementById("qr-wrapper").appendChild(img);
