@@ -42,16 +42,16 @@
                 <span class="login100-form-title">
                     YoCity 綁定 MetaMask 錢包
                 </span>
-                <div class="text-center txt2" id="divaddr" style="overflow-wrap: break-word;margin:4px;">
+                <div class="text-center txt2" id="divaddr" style="overflow-wrap: break-word;margin:3px;">
 
                 </div>
 
-                <div class="text-center txt2" id="qrcode" style="overflow-wrap: break-word;margin:4px;" >
+                <div class="text-center txt2" id="qrcode" style="overflow-wrap: break-word;margin:3px;" >
                     <a id="url" style="display: none;"></a><br/>
                     
                      <!--a href="metamask://ephemeral-cascaron-b1d97f.netlify.app/login/index.html">invocate Metamask</a--><br/>
                    
-                    <p id="qr-wrapper" style="display: none;"></p>
+                    <p id="qr-wrapper" style="display: none; overflow-wrap: break-word;margin:3px;"></p>
                 </div>
 
                 <div class="container-login100-form-btn">
@@ -154,7 +154,7 @@
                 data.payload = data.payload.replace("frank.hk", "YoCity");
 
                 //alert(JSON.stringify(data.payload));
-                $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;margin:4px;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
+                $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
                 //$("#divaddr").append("<div class=\"alert alert-secondary\" role=\"alert\">Hex Nonce (應該同 MetaMask 顯示一致)： <small>"+window.web3.utils.utf8ToHex(data.payload)+"</small></div>");
 
                 //var hexData = window.web3.utils.utf8ToHex(data.payload);
@@ -169,7 +169,7 @@
                     console.log(result);
                     console.log(signature);
                     signatureMetamask = signature;
-                    $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;margin:4px;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
+                    $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
 										
 										//{"code":0,"message":null,"payload":null}
                     if (!result) {
