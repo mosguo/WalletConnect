@@ -252,7 +252,7 @@ function renderUrl(url){
 	document.getElementById("url").href = url;
 	document.getElementById("url").innerText = '透過 Metamask App 綁定 YoCity';
 
-	const baseImgUrl = "http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${DATA}&qzone=1&margin=0&size=180x156&ecc=L";
+	const baseImgUrl = "http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${DATA}&qzone=1&margin=0&size=156x180&ecc=L";
 	const qrCodeUrl = baseImgUrl.replace('${DATA}', escape(url));
 
 	if(document.getElementById("qr-wrapper").firstElementChild){
