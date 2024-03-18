@@ -29,7 +29,7 @@
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 3px; 
+	margin: 0px; 
 	padding: 0px; 
 	box-sizing: border-box;
 }
@@ -167,7 +167,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 15px;
   background: #9053c7;
   background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
   background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
@@ -176,9 +176,9 @@ iframe {
 }
 
 .wrap-login100 {
-  width: 95%;
+  width: 960px;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
 
   display: -webkit-box;
@@ -188,7 +188,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 12px 12px 12px 12px;
+  padding: 177px 130px 33px 95px;
 }
 
 /*------------------------------------------------------------------
@@ -217,7 +217,7 @@ iframe {
 
   width: 100%;
   display: block;
-  padding-bottom: 21px;
+  padding-bottom: 54px;
 }
 
 
@@ -361,7 +361,7 @@ iframe {
 
 @media (max-width: 992px) {
   .wrap-login100 {
-    padding: 12px 12px 12px 12px;
+    padding: 177px 90px 33px 85px;
   }
 
   .login100-pic {
@@ -375,7 +375,7 @@ iframe {
 
 @media (max-width: 768px) {
   .wrap-login100 {
-    padding: 30px 24px 24px 25px;
+    padding: 100px 80px 33px 80px;
   }
 
   .login100-pic {
