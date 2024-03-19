@@ -274,12 +274,7 @@ function renderUrl(url){
 		alert('The url needs to start with https://');
 	}
 	
-	
  
-    //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
-    //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
-    //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
-    //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('Android general; launch metamask-->' + deeplink);
         //window.location.href = deeplink; 
@@ -287,16 +282,15 @@ function renderUrl(url){
         // alert('iPhone general; launch metamask-->');
         //window.location.href = deeplink; 
     }
-// alert(navigator.userAgent);
- //  alert("X11; Linux:" + (navigator.userAgent.indexOf("X11; Linux") >= 0));
-   //alert("KHTML, like Gecko:" + (navigator.userAgent.indexOf("KHTML, like Gecko") >= 0));  
+ 
 	if ((navigator.userAgent.indexOf("X11; Linux") >= 0) && (navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
   	//alert("KHTML, like Gecko");
     document.getElementById("url").style = "display:none;";
-    document.getElementById("divaddr").innerText = "<div class=\"alert alert-danger\" role=\"alert\">請選 [Binding Metamask] YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
- 
-	}
-    // else alert("not KHTML, like Gecko");
+    document.getElementById("divaddr").innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">請選 [Binding Metamask] YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
+    $("#btnConnect").hide();
+    $("#btnLogin").hide();
+    $("#btnYoCity").hide();
+	} 
 
 
 
