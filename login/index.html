@@ -289,9 +289,11 @@ function renderUrl(url){
     }
  
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
-        $("#divaddr").innerText="<div class=\"alert alert-danger\" role=\"alert\">YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
+    	alert("KHTML, like Gecko");
+       $("#divaddr").innerText="<div class=\"alert alert-danger\" role=\"alert\">YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
        $("#url").hide();  
-    }  
+    } else alert("not KHTML, like Gecko");
+
 
 
 
