@@ -275,21 +275,24 @@ function renderUrl(url){
 	}
 	
 	
-       alert(navigator.userAgent);
-       $("#url").innerText = navigator.userAgent;
+ 
     //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
     //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
     //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
     //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('Android general; launch metamask-->' + deeplink);
-        //window.location.href = deeplink;
-       $("#url").hide();  
+        //window.location.href = deeplink; 
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('iPhone general; launch metamask-->');
-        //window.location.href = deeplink;
-       $("#url").hide(); 
+        //window.location.href = deeplink; 
     }
+ 
+    if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
+        $("#divaddr").innerText="<div class=\"alert alert-danger\" role=\"alert\">YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
+       $("#url").hide();  
+    }  
+
 
 
 </script>
