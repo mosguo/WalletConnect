@@ -141,7 +141,7 @@
     function login() {
 alert("#btnLogin");    
         $("#btnLogin").attr("disabled", true);
-alert("// get nonce");
+alert("// get nonce:" + "./getNonce.jsp?address=" + address);
         // get nonce
         $.ajax({
             type: "GET",
