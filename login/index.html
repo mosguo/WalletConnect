@@ -41,7 +41,6 @@
             </div>
 
             <form class="login100-form validate-form">
-            	  <br/>  <br/>
                 <span class="login100-form-title">
                     YoCity 綁定 MetaMask 錢包
                 </span>
@@ -49,7 +48,7 @@
 
                 <div class="text-center txt2" id="qrcode" style="overflow-wrap:break-word; margin:3px;" >
                     <a id="url" style="display: none;"></a>
-                    <p id="qr-wrapper" style="display: none;vlign:center;"></p>
+                    <p id="qr-wrapper" style="display:none; vlign:center;"></p>
                 </div>
 
                 <div class="container-login100-form-btn">
@@ -139,9 +138,8 @@
 
 
     function login() {
-alert("#btnLogin");    
         $("#btnLogin").attr("disabled", true);
-alert("// get nonce:" + "./getNonce.jsp?address=" + address);
+
         // get nonce
         $.ajax({
             type: "GET",
@@ -152,7 +150,7 @@ alert("// get nonce:" + "./getNonce.jsp?address=" + address);
 
                 data.payload = data.payload.replace("frank.hk", "YoCity");
 
-alert(JSON.stringify(data.payload));
+                //alert(JSON.stringify(data.payload));
                 $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
                 //$("#divaddr").append("<div class=\"alert alert-secondary\" role=\"alert\">Hex Nonce (應該同 MetaMask 顯示一致)： <small>"+window.web3.utils.utf8ToHex(data.payload)+"</small></div>");
 
@@ -162,13 +160,11 @@ alert(JSON.stringify(data.payload));
                 //var hexData = "Hello welcome to YoCity";
 
                 console.log("payload", data.payload);
-alert(JSON.stringify(data.payload));
+
                 $("#btnLogin").html("等待 MetaMask 授權 ");
-alert("等待 MetaMask 授權 ");
                 window.web3.eth.personal.sign(hexData, address, function(result, signature){
                     console.log(result);
                     console.log(signature);
-alert("signature");
                     signatureMetamask = signature;
                     $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
 										
@@ -214,8 +210,6 @@ alert("signature");
             address = result[0];
             $("#divaddr").append("<div class=\"alert alert-primary\" style=\"color:#004085;background-color:#cce5ff;border-color:#b8daff;\" role=\"alert\">第一步: 錢包連接成功： "+result[0]+"<br/>請繼續</div>");
             $("#btnConnect").hide();
-            
-            alert("show btnLogin");
             $("#btnLogin").show();
         }).catch((error) => {
             console.log("error",error);
@@ -225,23 +219,13 @@ alert("signature");
 
     $(function(){
         if (window.web3) {
-        } else if ((navigator.userAgent.indexOf("X11; Linux") >= 0) && (navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
-						// in Unity
-            $("#divaddr").append("<div class=\"alert alert-danger\" role=\"alert\">請選 [Binding Metamask] YoCity將引導您轉導到Metamask App錢包進行綁定。</div>");
-            $("#url").hide();
-            $("#qr-wrapper").show();
-            $("#btnConnect").hide();
-            $("#btnLogin").hide(); 
-				} else {
-						// in Browser not Extension
+        } else {
             $("#divaddr").append("<div class=\"alert alert-danger\" role=\"alert\">你的瀏覽器似乎沒有安裝 MetaMask 插件，可以先安裝再試，或由Metamask App進行綁定。</div>");
             $("#url").show();
             $("#qr-wrapper").show();
             $("#btnConnect").hide();
             $("#btnLogin").hide();
         }
-        
-       // $("#qr-wrapper").show();
     });
 
 
@@ -288,19 +272,18 @@ function renderUrl(url){
 	} else {
 		alert('The url needs to start with https://');
 	}
-	
- 
+
+    //var isMetaMaskBrowserMobile = ((navigator.userAgent.indexOf("Android") >= 0) || (navigator.userAgent.indexOf("iPhone") >= 0)) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 );
+    //alert('Android:' +(navigator.userAgent.indexOf("Android") >= 0));
+    //alert('iPhone:' +(navigator.userAgent.indexOf("iPhone") >= 0));
+    //alert('MetaMaskMobile:' + (navigator.userAgent.indexOf("MetaMaskMobile") >= 0));
     if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('Android general; launch metamask-->' + deeplink);
-        //window.location.href = deeplink; 
+        //window.location.href = deeplink;
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('iPhone general; launch metamask-->');
-        //window.location.href = deeplink; 
+        //window.location.href = deeplink;
     }
- 
-
-
-
 
 
 </script>
