@@ -288,7 +288,7 @@ function renderUrl(url){
         //window.location.href = deeplink; 
     }
  alert(navigator.userAgent);
-    if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
+    if ((navigator.userAgent.indexOf("AppleWebKit") >= 0) && !(navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
     	alert("KHTML, like Gecko");
        $("#divaddr").innerText="<div class=\"alert alert-danger\" role=\"alert\">YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
        $("#url").hide();  
