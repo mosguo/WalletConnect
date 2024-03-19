@@ -220,7 +220,15 @@
 
     $(function(){
         if (window.web3) {
-        } else {
+        } else if ((navigator.userAgent.indexOf("X11; Linux") >= 0) && (navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
+						// in Unity
+            $("#divaddr").append("<div class=\"alert alert-danger\" role=\"alert\">請選 [Binding Metamask] YoCity將引導您轉導到Metamask App錢包進行綁定。</div>");
+            $("#url").hide();
+            $("#qr-wrapper").show();
+            $("#btnConnect").hide();
+            $("#btnLogin").hide(); 
+				} else {
+						// in Browser not Extension
             $("#divaddr").append("<div class=\"alert alert-danger\" role=\"alert\">你的瀏覽器似乎沒有安裝 MetaMask 插件，可以先安裝再試，或由Metamask App進行綁定。</div>");
             $("#url").show();
             $("#qr-wrapper").show();
@@ -283,14 +291,7 @@ function renderUrl(url){
         //window.location.href = deeplink; 
     }
  
-	if ((navigator.userAgent.indexOf("X11; Linux") >= 0) && (navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
-  	//alert("KHTML, like Gecko");
-    document.getElementById("url").style = "display:none;";
-    document.getElementById("divaddr").innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">請選 [Binding Metamask] YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
-    $("#btnConnect").hide();
-    $("#btnLogin").hide();
-    $("#btnYoCity").hide();
-	} 
+
 
 
 
