@@ -282,6 +282,7 @@ function renderUrl(url){
         // alert('Android general; launch metamask-->' + deeplink);
         //window.location.href = deeplink;
        $("#url").hide(); 
+       alert(navigator.userAgent);
     } else if ((navigator.userAgent.indexOf("iPhone") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
         // alert('iPhone general; launch metamask-->');
         //window.location.href = deeplink;
