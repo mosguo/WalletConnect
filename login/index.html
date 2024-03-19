@@ -287,14 +287,15 @@ function renderUrl(url){
         // alert('iPhone general; launch metamask-->');
         //window.location.href = deeplink; 
     }
- alert(navigator.userAgent);
-   alert("X11; Linux:" + (navigator.userAgent.indexOf("X11; Linux") >= 0));
-   alert("KHTML, like Gecko:" + (navigator.userAgent.indexOf("KHTML, like Gecko") >= 0));  
-    if ((navigator.userAgent.indexOf("X11; Linux") >= 0) && (navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
-    	//alert("KHTML, like Gecko");
-       $("#divaddr").innerText="<div class=\"alert alert-danger\" role=\"alert\">YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
-       $("#url").hide();  
-    }
+// alert(navigator.userAgent);
+ //  alert("X11; Linux:" + (navigator.userAgent.indexOf("X11; Linux") >= 0));
+   //alert("KHTML, like Gecko:" + (navigator.userAgent.indexOf("KHTML, like Gecko") >= 0));  
+	if ((navigator.userAgent.indexOf("X11; Linux") >= 0) && (navigator.userAgent.indexOf("KHTML, like Gecko") >=0 )) {
+  	//alert("KHTML, like Gecko");
+    document.getElementById("url").style = "display:none;";
+    document.getElementById("divaddr").innerText = "<div class=\"alert alert-danger\" role=\"alert\">請選 [Binding Metamask] YoCity將引導您轉導到Metamask App錢包進行綁定。</div>";
+ 
+	}
     // else alert("not KHTML, like Gecko");
 
 
