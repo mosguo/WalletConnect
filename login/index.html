@@ -211,6 +211,8 @@
             address = result[0];
             $("#divaddr").append("<div class=\"alert alert-primary\" style=\"color:#004085;background-color:#cce5ff;border-color:#b8daff;\" role=\"alert\">第一步: 錢包連接成功： "+result[0]+"<br/>請繼續</div>");
             $("#btnConnect").hide();
+            
+            alert("show btnLogin");
             $("#btnLogin").show();
         }).catch((error) => {
             console.log("error",error);
@@ -235,6 +237,8 @@
             $("#btnConnect").hide();
             $("#btnLogin").hide();
         }
+        
+        $("#qr-wrapper").show();
     });
 
 
