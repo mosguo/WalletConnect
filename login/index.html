@@ -164,7 +164,7 @@
                 window.web3.eth.personal.sign(hexData, address, function(result, signature){
                     console.log(result);
                     console.log(signature);
- 
+  
                     signatureMetamask = signature;
                     $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
 
