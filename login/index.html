@@ -160,7 +160,7 @@
                 var hexData = data.payload;
                 //var hexData = "Hello welcome to YoCity";
                 console.log("payload", data.payload);
-                $("#btnLogin").html("等待 MetaMask 授權 ");
+                $("#btnLogin").html("等待 會員中心 綁定 ");
                 window.web3.eth.personal.sign(hexData, address, function(result, signature){
                     console.log(result);
                     console.log(signature);
@@ -171,7 +171,7 @@
  					var dataBinding = JSON.stringify({ socialLoginSeq: 1, socialLoginUserId:idMember, walletSeq:1, walletAddress:address });
 
 					//alert(dataBinding);
- 
+
                     if (!result) {
                         $.ajax({
                             type: "POST",
