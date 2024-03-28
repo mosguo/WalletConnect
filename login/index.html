@@ -60,7 +60,7 @@
                         已連接，可以操作區塊鏈
                     </button>
                     <button class="login100-form-btn" type="button" onclick="redirectYoCity();" id="btnYoCity" style="display: none;">
-                        🎉 轉導 🎉
+                        🎉 轉導 YoCity🎉
                     </button>
                 </div>
 
@@ -117,12 +117,16 @@
 <script >
     var address;
     var signatureMetamask;
+    var idMember = 'b1fef736-af64-44dc-b5c7-d5ace8dd7a01-' + (new Date()).getTime();
+   // alert(idMember);
+
+
     $('.js-tilt').tilt({
         scale: 1.1
     })
 
     function redirectYoCity() {
-    	var urlTarget = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&address=' + address + '&signature=' + signatureMetamask;
+    	var urlTarget = 'https://cht.yocity.com.tw/goscene.html?subjectid=16&idMember=' + idMember + '&address=' + address + '&signature=' + signatureMetamask;
         alert(urlTarget);
         if ((navigator.userAgent.indexOf("Android") >= 0) && !(navigator.userAgent.indexOf("MetaMaskMobile") >=0 )) {
             //alert('Android general; launch metamask-->');
@@ -139,10 +143,7 @@
 
 
     function login() {
-
         $("#btnLogin").attr("disabled", true);
-//alert("// get nonce:" + "./getNonce.jsp?address=" + address);
-        // get nonce
         $.ajax({
             type: "GET",
             //url: "./getNonce.jsp?address="+address,
@@ -150,50 +151,55 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function(data){
-
                 data.payload = data.payload.replace("frank.hk", "YoCity");
 
- 
                 $("#divaddr").append("<div class=\"alert alert-secondary\" style=\"color:#464a4e;background-color:#e7e8ea;border-color:#dddfe2;\" role=\"alert\">第二步: Backend 取得 Nonce成功： <small>"+data.payload+"</small></div>");
                 //$("#divaddr").append("<div class=\"alert alert-secondary\" role=\"alert\">Hex Nonce (應該同 MetaMask 顯示一致)： <small>"+window.web3.utils.utf8ToHex(data.payload)+"</small></div>");
 
                 //var hexData = window.web3.utils.utf8ToHex(data.payload);
                 var hexData = data.payload;
-
                 //var hexData = "Hello welcome to YoCity";
-
                 console.log("payload", data.payload);
- 
                 $("#btnLogin").html("等待 MetaMask 授權 ");
- 
                 window.web3.eth.personal.sign(hexData, address, function(result, signature){
                     console.log(result);
                     console.log(signature);
  
                     signatureMetamask = signature;
                     $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
-										
-										//{"code":0,"message":null,"payload":null}
+
+ 					var dataBinding = JSON.stringify({ socialLoginSeq: 1, socialLoginUserId:idMember, walletSeq:1, walletAddress:address });
+
+					//alert(dataBinding);
+
                     if (!result) {
                         $.ajax({
                             type: "POST",
-                            url: "https://demo.frank.hk/api/metamask/login",
-                            data: JSON.stringify({ signature: signature, nonce:data.payload, hexNonce:hexData, address:address }),
+                            url: "http://10.144.91.143:8087/meta/api/binding-wallet",
+                            data: dataBinding,
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function(loginResult){
-                                if (loginResult.code == 0) {
+                            //alert(JSON.stringify(loginResult));
+                            //////////////////////////////{  "returnCode": "0000",   "returnMessage": "成功" }
+                                if (loginResult.returnCode == '0000') {
                                     // login success
                                     $("#divaddr").append("<div class=\"alert alert-info\" style=\"color:#0c5460;background-color:#d1ecf1;border-color:#bee5eb;\" role=\"alert\">第四步: Backend 收到簽章(待通知SSO/OAuth)</div>");
                                     $("#divaddr").append("<div class=\"alert alert-success\" style=\"color:#155724;background-color:#d4edda;border-color:#c3e6cb;\" role=\"alert\">🎉 登入成功,可以轉導至YoCity 🎉</div>");
                                     //style="display: none;"
-                                    //$("#btnYoCity").html('🎉 轉導 🎉');
+                                    //alert(JSON.stringify(loginResult));
+                                    //$("#btnYoCity").html('🎉 轉導 YoCity 🎉');
+                                    $("#btnLogin").hide();
+                                    $("#btnYoCity").show();
+                                } else if (loginResult.returnCode == '1003') {
+                                    $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">第四步: 重覆綁定</div>");
                                     $("#btnLogin").hide();
                                     $("#btnYoCity").show();
                                 } else {
                                     $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">第四步: Backend 驗證簽名失敗</div>");
-                                    $("#divaddr").append("<div class=\"alert alert-danger\" style=\"color:#cc5733;background-color:#33edcc;border-color:#c3e6cb;\" role=\"alert\">登入失敗</div>");
+                                    $("#btnLogin").hide();
                                 }
+
                             },
                             failure: function(errMsg) {
                                 alert(errMsg);
@@ -280,6 +286,7 @@ function renderUrl(url){
 }
 
     var dapp_url = "https://metamask.app.link/dapp/ephemeral-cascaron-b1d97f.netlify.app/login/index.html";
+    //var dapp_url = "https://metamask.app.link/dapp/http://10.144.132.65:8082/login/index.html";
     var BASE_URL = 'https://metamask.app.link';
 	if (dapp_url.search("https://") !== -1){
 		var url = BASE_URL + '/dapp/' + dapp_url.replace('https://', '');
