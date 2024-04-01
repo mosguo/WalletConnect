@@ -164,18 +164,19 @@
                 window.web3.eth.personal.sign(hexData, address, function(result, signature){
                     console.log(result);
                     console.log(signature);
-  
+
                     signatureMetamask = signature;
                     $("#divaddr").append("<div class=\"alert alert-warning\" style=\"color:#856404;background-color:#fff3cd;border-color:#ffeeba;\" role=\"alert\">第三步: 取得 MetaMask 簽名： <small>"+signature+"</small></div>");
 
  					var dataBinding = JSON.stringify({ socialLoginSeq: 1, socialLoginUserId:idMember, walletSeq:1, walletAddress:address });
 
 					//alert(dataBinding);
-
+                    var urlBinding = "https://nft.hinet.net/meta/api/binding-wallet";
+                    //var urlBinding = "http://10.144.132.65:8080/proto/binding.jsp";
                     if (!result) {
                         $.ajax({
                             type: "POST",
-                            url: "https://10.144.91.143:8087/meta/api/binding-wallet",
+                            url: urlBinding,
                             data: dataBinding,
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
